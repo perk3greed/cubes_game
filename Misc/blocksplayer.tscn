@@ -1,0 +1,124 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Bricks/new_empty.png" type="Texture" id=1]
+[ext_resource path="res://Bricks/new_grid/wexler-empty.png" type="Texture" id=2]
+[ext_resource path="res://Bricks/new_grid/wexler-br.png" type="Texture" id=3]
+[ext_resource path="res://Bricks/new_grid/wexler-tr.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=2]
+resource_name = "6"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.02, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.03, 0.3 ),
+"transitions": PoolRealArray( 1.86607, 0.466517 ),
+"update": 0,
+"values": [ Vector2( 1.4, 1.4 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "2"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.02, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ), ExtResource( 3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.03, 0.3 ),
+"transitions": PoolRealArray( 1.86607, 0.466517 ),
+"update": 0,
+"values": [ Vector2( 1.4, 1.4 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "3"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.02, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ), ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.03, 0.3 ),
+"transitions": PoolRealArray( 1.86607, 0.466517 ),
+"update": 0,
+"values": [ Vector2( 1.4, 1.4 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "full_block_entered"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ null, ExtResource( 1 ), null ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 2.07053, 1.8025 ),
+"update": 0,
+"values": [ Vector2( 1.4, 1.4 ), Vector2( 1, 1 ) ]
+}
+
+[node name="blocksplayer" type="AnimationPlayer"]
+anims/0 = SubResource( 2 )
+anims/1 = SubResource( 2 )
+anims/2 = SubResource( 3 )
+anims/3 = SubResource( 4 )
+anims/4 = SubResource( 2 )
+anims/5 = SubResource( 2 )
+anims/6 = SubResource( 2 )
+anims/full_block_entered = SubResource( 1 )

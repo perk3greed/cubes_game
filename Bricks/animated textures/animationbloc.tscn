@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Misc/blocksplayer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Bricks/animated textures/animationbloc.gd" type="Script" id=2]
+
+[node name="AnimaTextRect" type="TextureRect"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 150, 150 )
+rect_scale = Vector2( 1.4, 1.4 )
+mouse_filter = 2
+script = ExtResource( 2 )
+
+[node name="blocksplayer" parent="." instance=ExtResource( 1 )]
+
+[connection signal="mouse_entered" from="." to="." method="_on_AnimaTextRect_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_AnimaTextRect_mouse_exited"]

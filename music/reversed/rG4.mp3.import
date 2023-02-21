@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/rG4.mp3-368765f5031e1b9e28e1e17cbf059c15.mp3str"
+
+[deps]
+
+source_file="res://music/reversed/rG4.mp3"
+dest_files=[ "res://.import/rG4.mp3-368765f5031e1b9e28e1e17cbf059c15.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

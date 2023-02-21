@@ -1,0 +1,62 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Resource",
+"class": "levels",
+"language": "GDScript",
+"path": "res://Bricks/desired_items.gd"
+} ]
+_global_script_class_icons={
+"levels": ""
+}
+
+[application]
+
+config/name="the game quize"
+run/main_scene="res://menu/TheGAME.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Events="*res://Src/Events.gd"
+CurrentLvl="*res://current_lvl.gd"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/handheld/orientation="sensor"
+window/stretch/mode="viewport"
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[input]
+
+LMB={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
+[mono]
+
+project/assembly_name="wechsler-attempt"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+environment/default_environment="res://default_env.tres"

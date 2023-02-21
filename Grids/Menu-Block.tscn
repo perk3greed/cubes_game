@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Grids/Menu-Block.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "animation_taken"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.01, 0.4 ),
+"transitions": PoolRealArray( 2.14355, 0.482968 ),
+"update": 0,
+"values": [ Color( 0.270588, 0.105882, 0.105882, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Menu-Block" type="TextureRect"]
+script = ExtResource( 1 )
+brickState = 0
+
+[node name="take_animation" type="AnimationPlayer" parent="."]
+anims/animation_taken = SubResource( 1 )
+
+[connection signal="mouse_entered" from="." to="." method="_on_TextureRect_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_TextureRect_mouse_exited"]
