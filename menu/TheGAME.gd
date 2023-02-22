@@ -1,8 +1,12 @@
 extends Node2D
 
-var current_level = 1
-var tutorial_done = false
+var current_level
+var tutorial_done
 var rng = RandomNumberGenerator.new()
+var data_missing = true
+var our_data
+#var first_launch = false
+
 
 signal start_level_data(level_data)
 signal play_tutorial
@@ -76,11 +80,70 @@ func _ready():
 	Events.connect("sound_control_pressed", self, "sound_change")
 	Events.connect("start_button_pressed", self, "change_children")
 	Events.connect("next_button_pressed", self, "go_back_to_menu")
- 
+	JavaScript.eval("console.log('_ready() moment')")
+#	var contador = 0
+#	while Ysdk.starting_player_logged != 1:
+#		print("starting player not logged in")
+#		contador += 1
+#		if contador >= 10000:
+#			print("quitting _ready")
+#			break
+#		print(Ysdk.get_Data_js())
+#	print("STARTING PLAYER IS LOGGED IN")
+#	print(Ysdk.get_Data_js())
+
+#	JavaScript.eval("console.log(player)")
+	
+#func change_tutorial_var():
+##	tutorial_done = 
+#	pass
+
+var ft = true
+#var st = false
+
+func _process(delta):
+
+	if Ysdk.starting_player_logged and data_missing:
+		print("STARTING PLAYER IS LOGGED IN")
+		print(Ysdk.window.player)
+		our_data = Ysdk.get_Data_js()
+		print(our_data)
+		data_missing = false
+		if our_data == null:
+			print("data confirmed null")
+			
+#			first_launch = true
+			
+			Ysdk.set_Data_js('{"tutorial_done": false, "current_level": 1}')
+#			yield(get_tree().create_timer(5.0), "timeout")
+			Ysdk.get_Data_js()
+#			yield(get_tree().create_timer(5.0), "timeout")
+#			print(Ysdk.returned_data.result["tutorial_done"])
+#		else:
+#			if our_data["tutorial_done"]:
+#				current_level = our_data["current_level"]
+#				print(tutorial_done, current_level)
+#	if st:
+#		st = false
+#		print(Ysdk.get_Data_js())
+#	if ft:
+#		ft = false
+#		st = true
+	if Ysdk.ready_to_get_data and ft:
+		print("tutorial done?")
+		tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
+		print(tutorial_done)
+		print("current level?")
+		current_level = int(Ysdk.returned_data.result["current_level"])
+		print(current_level)
+		ft = false
 
 
 
 func change_children():
+	print("changing children...")
+	print(Ysdk.set_Data_js(Ysdk.generate_ready_dict_in_string(tutorial_done, current_level)))
+	print(Ysdk.get_Data_js())
 	$button_pressed.play()
 	if current_level <= 31: 
 		var instanced_child = scene.instance()

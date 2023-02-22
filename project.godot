@@ -26,6 +26,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Ysdk="*res://Yandex/YSDK.gd"
 Events="*res://Src/Events.gd"
 CurrentLvl="*res://current_lvl.gd"
 
