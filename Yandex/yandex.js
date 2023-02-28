@@ -1,6 +1,15 @@
+var SDKError = false;
+function SDKErrorHandler() {
+    SDKError = true;
+}
+
+////////////////// before the script ^^^
+
+
 var ysdk;
 // var leaderboard;
 var player;
+
 
 
 function initSDK(callback) {

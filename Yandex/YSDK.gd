@@ -12,10 +12,15 @@ var get_data_callback = JavaScript.create_callback(self, "get_Data")
 var ready_to_get_data = false
 var first_get_callback = true
 var starting_player_logged = false
+var yandex_is_connected = false
+#var initError
 
 func _ready() -> void:
 #	window = JavaScript.get_interface("window")
 	print("Initializing SDK...")
+	if window.SDKError:
+		ready_to_get_data = true
+		return
 	window.initSDK(init_SDK_callback)
 	
 func init_SDK(args):
@@ -25,6 +30,13 @@ func init_SDK(args):
 	if args[0] == true:
 #		var ready_to_get_player = 1
 		window.getPlayer(get_player_callback)
+		yandex_is_connected = true
+#	else:
+##		yandex_is_connected = false
+#		ready_to_get_data = true
+#	if args == null:
+#		ready_to_get_data = true
+	ready_to_get_data = true
 
 func get_Player(args):
 #	window = JavaScript.get_interface("window")

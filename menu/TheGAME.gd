@@ -130,20 +130,32 @@ func _process(delta):
 #		ft = false
 #		st = true
 	if Ysdk.ready_to_get_data and ft:
-		print("tutorial done?")
-		tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
-		print(tutorial_done)
-		print("current level?")
-		current_level = int(Ysdk.returned_data.result["current_level"])
-		print(current_level)
+		print("ayo")
+		if not Ysdk.starting_player_logged:
+			print("player didn't log in")
+			tutorial_done = false
+			current_level = 1
+		else:
+			if not Ysdk.yandex_is_connected:
+				print("yandex SDK init failed for whatever reason")
+				tutorial_done = false
+				current_level = 1
+			else:
+				print("tutorial done?")
+				tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
+				print(tutorial_done)
+				print("current level?")
+				current_level = int(Ysdk.returned_data.result["current_level"])
+				print(current_level)
 		ft = false
 
 
 
 func change_children():
 	print("changing children...")
-	print(Ysdk.set_Data_js(Ysdk.generate_ready_dict_in_string(tutorial_done, current_level)))
-	print(Ysdk.get_Data_js())
+	if Ysdk.yandex_is_connected and Ysdk.starting_player_logged:
+		print(Ysdk.set_Data_js(Ysdk.generate_ready_dict_in_string(tutorial_done, current_level)))
+		print(Ysdk.get_Data_js())
 	$button_pressed.play()
 	if current_level <= 31: 
 		var instanced_child = scene.instance()
