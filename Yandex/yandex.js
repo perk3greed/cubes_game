@@ -45,6 +45,15 @@ function getData(callback) {
     })
 }
 
+function localSetData(callback, datatoset) {
+    console.log(JSON.parse(datatoset))
+    localStorage.setItem("playerdata", datatoset)
+    callback("localStorage setItemed!");
+}
+
+function localGetData(callback){
+    callback(localStorage.getItem("playerdata"));
+}
 // function getLeaderboard() {
 //     ysdk.getLeaderboards().then(_leaderboard => {
 //         leaderboard = _leaderboard

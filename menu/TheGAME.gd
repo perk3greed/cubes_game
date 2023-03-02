@@ -5,6 +5,7 @@ var tutorial_done
 var rng = RandomNumberGenerator.new()
 var data_missing = true
 var our_data
+var going_local = false
 #var first_launch = false
 
 
@@ -102,7 +103,6 @@ var ft = true
 #var st = false
 
 func _process(delta):
-
 	if Ysdk.starting_player_logged and data_missing:
 		print("STARTING PLAYER IS LOGGED IN")
 		print(Ysdk.window.player)
@@ -130,16 +130,41 @@ func _process(delta):
 #		ft = false
 #		st = true
 	if Ysdk.ready_to_get_data and ft:
+		ft = false
 		print("ayo")
 		if not Ysdk.starting_player_logged:
+			Ysdk.local_get_Data_js()
 			print("player didn't log in")
-			tutorial_done = false
-			current_level = 1
-		else:
-			if not Ysdk.yandex_is_connected:
-				print("yandex SDK init failed for whatever reason")
+			going_local = true
+			if typeof(Ysdk.returned_data) != TYPE_DICTIONARY:
+				print("returned local data is good")
+				print("tutorial done?")
+				tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
+				print(tutorial_done)
+				print("current level?")
+				current_level = int(Ysdk.returned_data.result["current_level"])
+				print(current_level)
+			else:
+				print("returned local data is {}")
 				tutorial_done = false
 				current_level = 1
+		else:
+			if not Ysdk.yandex_is_connected:
+				Ysdk.local_get_Data_js()
+				print("yandex SDK init failed for whatever reason")
+				going_local = true
+				if typeof(Ysdk.returned_data) != TYPE_DICTIONARY:
+					print("returned local data is good")
+					print("tutorial done?")
+					tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
+					print(tutorial_done)
+					print("current level?")
+					current_level = int(Ysdk.returned_data.result["current_level"])
+					print(current_level)
+				else:
+					print("returned local data is {}")
+					tutorial_done = false
+					current_level = 1
 			else:
 				print("tutorial done?")
 				tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
@@ -147,15 +172,20 @@ func _process(delta):
 				print("current level?")
 				current_level = int(Ysdk.returned_data.result["current_level"])
 				print(current_level)
-		ft = false
+
 
 
 
 func change_children():
 	print("changing children...")
-	if Ysdk.yandex_is_connected and Ysdk.starting_player_logged:
+	if going_local:
+		print("we going local ayy")
+		print(Ysdk.local_set_Data_js(Ysdk.generate_ready_dict_in_string(tutorial_done, current_level)))
+		print(Ysdk.local_get_Data_js())
+	else:
 		print(Ysdk.set_Data_js(Ysdk.generate_ready_dict_in_string(tutorial_done, current_level)))
 		print(Ysdk.get_Data_js())
+#	if Ysdk.yandex_is_connected and Ysdk.starting_player_logged:	
 	$button_pressed.play()
 	if current_level <= 31: 
 		var instanced_child = scene.instance()
