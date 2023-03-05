@@ -103,88 +103,89 @@ var ft = true
 #var st = false
 
 func _process(delta):
-	if Ysdk.starting_player_logged and data_missing:
-		print("STARTING PLAYER IS LOGGED IN")
-		print(Ysdk.window.player)
-		Ysdk.get_Data_js()
-#		our_data = Ysdk.returned_data.parse
-#		print(our_data)
-		data_missing = false
-#		if our_data == null:
-#			print("data confirmed null")
-			
-#			first_launch = true
-			
-#			Ysdk.set_Data_js('{"tutorial_done": false, "current_level": 1}')
+	pass
+#	if Ysdk.starting_player_logged and data_missing:
+#		print("STARTING PLAYER IS LOGGED IN")
+#		print(Ysdk.window.player)
+#		Ysdk.get_Data_js()
+##		our_data = Ysdk.returned_data.parse
+##		print(our_data)
+#		data_missing = false
+##		if our_data == null:
+##			print("data confirmed null")
+#
+##			first_launch = true
+#
+##			Ysdk.set_Data_js('{"tutorial_done": false, "current_level": 1}')
+###			yield(get_tree().create_timer(5.0), "timeout")
+##			Ysdk.get_Data_js()
 ##			yield(get_tree().create_timer(5.0), "timeout")
-#			Ysdk.get_Data_js()
-#			yield(get_tree().create_timer(5.0), "timeout")
-#			print(Ysdk.returned_data.result["tutorial_done"])
-#		else:
-#			if our_data["tutorial_done"]:
-#				current_level = our_data["current_level"]
-#				print(tutorial_done, current_level)
-	elif data_missing:
-		print("data is missing and the starting player hasn't logged in. opt for local")
-		Ysdk.local_get_Data_js()
-#		our_data = Ysdk.returned_data.parse
-#		print(our_data)
-		data_missing = false
-#		if our_data == null:
-#			print("data confirmed null in starting player not logged")
-			
-#	if st:
-#		st = false
-#		print(Ysdk.get_Data_js())
-#	if ft:
+##			print(Ysdk.returned_data.result["tutorial_done"])
+##		else:
+##			if our_data["tutorial_done"]:
+##				current_level = our_data["current_level"]
+##				print(tutorial_done, current_level)
+#	elif data_missing:
+#		print("data is missing and the starting player hasn't logged in. opt for local")
+#		Ysdk.local_get_Data_js()
+##		our_data = Ysdk.returned_data.parse
+##		print(our_data)
+#		data_missing = false
+##		if our_data == null:
+##			print("data confirmed null in starting player not logged")
+#
+##	if st:
+##		st = false
+##		print(Ysdk.get_Data_js())
+##	if ft:
+##		ft = false
+##		st = true
+#	if Ysdk.ready_to_get_data and ft:
 #		ft = false
-#		st = true
-	if Ysdk.ready_to_get_data and ft:
-		ft = false
-		print("ayo")
-		if not Ysdk.starting_player_logged:
-			Ysdk.local_get_Data_js()
-			print("player didn't log in")
-			going_local = true
-			if typeof(Ysdk.returned_data) != TYPE_DICTIONARY:
-				print("returned local data is good")
-				level_setter_ysdk()
-#				print("tutorial done?")
-#				tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
-#				print(tutorial_done)
-#				print("current level?")
-#				current_level = int(Ysdk.returned_data.result["current_level"])
-#				print(current_level)
-			else:
-				print("returned local data is {}")
-				tutorial_done = false
-				current_level = 1
-		else:
-			if not Ysdk.yandex_is_connected:
-				Ysdk.local_get_Data_js()
-				print("yandex SDK init failed for whatever reason")
-				going_local = true
-				if typeof(Ysdk.returned_data) != TYPE_DICTIONARY:
-					print("returned local data is good")
-					level_setter_ysdk()
-#					print("tutorial done?")
-#					tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
-#					print(tutorial_done)
-#					print("current level?")
-#					current_level = int(Ysdk.returned_data.result["current_level"])
-#					print(current_level)
-				else:
-					print("returned local data is {}")
-					tutorial_done = false
-					current_level = 1
-			else:
-				level_setter_ysdk()
-#				print("tutorial done?")
-#				tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
-#				print(tutorial_done)
-#				print("current level?")
-#				current_level = int(Ysdk.returned_data.result["current_level"])
-#				print(current_level)
+#		print("ayo")
+#		if not Ysdk.starting_player_logged:
+#			Ysdk.local_get_Data_js()
+#			print("player didn't log in")
+#			going_local = true
+#			if typeof(Ysdk.returned_data) != TYPE_DICTIONARY:
+#				print("returned local data is good")
+#				level_setter_ysdk()
+##				print("tutorial done?")
+##				tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
+##				print(tutorial_done)
+##				print("current level?")
+##				current_level = int(Ysdk.returned_data.result["current_level"])
+##				print(current_level)
+#			else:
+#				print("returned local data is {}")
+#				tutorial_done = false
+#				current_level = 1
+#		else:
+#			if not Ysdk.yandex_is_connected:
+#				Ysdk.local_get_Data_js()
+#				print("yandex SDK init failed for whatever reason")
+#				going_local = true
+#				if typeof(Ysdk.returned_data) != TYPE_DICTIONARY:
+#					print("returned local data is good")
+#					level_setter_ysdk()
+##					print("tutorial done?")
+##					tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
+##					print(tutorial_done)
+##					print("current level?")
+##					current_level = int(Ysdk.returned_data.result["current_level"])
+##					print(current_level)
+#				else:
+#					print("returned local data is {}")
+#					tutorial_done = false
+#					current_level = 1
+#			else:
+#				level_setter_ysdk()
+##				print("tutorial done?")
+##				tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
+##				print(tutorial_done)
+##				print("current level?")
+##				current_level = int(Ysdk.returned_data.result["current_level"])
+##				print(current_level)
 
 func level_setter_ysdk():
 	print("tutorial done?")
