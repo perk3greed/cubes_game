@@ -106,23 +106,33 @@ func _process(delta):
 	if Ysdk.starting_player_logged and data_missing:
 		print("STARTING PLAYER IS LOGGED IN")
 		print(Ysdk.window.player)
-		our_data = Ysdk.get_Data_js()
-		print(our_data)
+		Ysdk.get_Data_js()
+#		our_data = Ysdk.returned_data.parse
+#		print(our_data)
 		data_missing = false
-		if our_data == null:
-			print("data confirmed null")
+#		if our_data == null:
+#			print("data confirmed null")
 			
 #			first_launch = true
 			
-			Ysdk.set_Data_js('{"tutorial_done": false, "current_level": 1}')
-#			yield(get_tree().create_timer(5.0), "timeout")
-			Ysdk.get_Data_js()
+#			Ysdk.set_Data_js('{"tutorial_done": false, "current_level": 1}')
+##			yield(get_tree().create_timer(5.0), "timeout")
+#			Ysdk.get_Data_js()
 #			yield(get_tree().create_timer(5.0), "timeout")
 #			print(Ysdk.returned_data.result["tutorial_done"])
 #		else:
 #			if our_data["tutorial_done"]:
 #				current_level = our_data["current_level"]
 #				print(tutorial_done, current_level)
+	elif data_missing:
+		print("data is missing and the starting player hasn't logged in. opt for local")
+		Ysdk.local_get_Data_js()
+#		our_data = Ysdk.returned_data.parse
+#		print(our_data)
+		data_missing = false
+#		if our_data == null:
+#			print("data confirmed null in starting player not logged")
+			
 #	if st:
 #		st = false
 #		print(Ysdk.get_Data_js())
@@ -138,12 +148,13 @@ func _process(delta):
 			going_local = true
 			if typeof(Ysdk.returned_data) != TYPE_DICTIONARY:
 				print("returned local data is good")
-				print("tutorial done?")
-				tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
-				print(tutorial_done)
-				print("current level?")
-				current_level = int(Ysdk.returned_data.result["current_level"])
-				print(current_level)
+				level_setter_ysdk()
+#				print("tutorial done?")
+#				tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
+#				print(tutorial_done)
+#				print("current level?")
+#				current_level = int(Ysdk.returned_data.result["current_level"])
+#				print(current_level)
 			else:
 				print("returned local data is {}")
 				tutorial_done = false
@@ -155,28 +166,40 @@ func _process(delta):
 				going_local = true
 				if typeof(Ysdk.returned_data) != TYPE_DICTIONARY:
 					print("returned local data is good")
-					print("tutorial done?")
-					tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
-					print(tutorial_done)
-					print("current level?")
-					current_level = int(Ysdk.returned_data.result["current_level"])
-					print(current_level)
+					level_setter_ysdk()
+#					print("tutorial done?")
+#					tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
+#					print(tutorial_done)
+#					print("current level?")
+#					current_level = int(Ysdk.returned_data.result["current_level"])
+#					print(current_level)
 				else:
 					print("returned local data is {}")
 					tutorial_done = false
 					current_level = 1
 			else:
-				print("tutorial done?")
-				tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
-				print(tutorial_done)
-				print("current level?")
-				current_level = int(Ysdk.returned_data.result["current_level"])
-				print(current_level)
+				level_setter_ysdk()
+#				print("tutorial done?")
+#				tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
+#				print(tutorial_done)
+#				print("current level?")
+#				current_level = int(Ysdk.returned_data.result["current_level"])
+#				print(current_level)
 
-
+func level_setter_ysdk():
+	print("tutorial done?")
+	tutorial_done = bool(Ysdk.returned_data.result["tutorial_done"])
+	print(tutorial_done)
+	print("current level?")
+	current_level = int(Ysdk.returned_data.result["current_level"])
+	print(current_level)
 
 
 func change_children():
+	if tutorial_done == null:
+		tutorial_done = false
+	if current_level == null:
+		current_level = 1
 	print("changing children...")
 	if going_local:
 		print("we going local ayy")
