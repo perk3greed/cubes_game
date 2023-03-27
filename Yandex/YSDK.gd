@@ -11,11 +11,14 @@ var set_data_callback = JavaScript.create_callback(self, "set_Data")
 var get_data_callback = JavaScript.create_callback(self, "get_Data")
 var local_set_data_callback = JavaScript.create_callback(self, "local_set_Data")
 var local_get_data_callback = JavaScript.create_callback(self, "local_get_Data")
+var get_locale_callback = JavaScript.create_callback(self, "get_Locale")
 
 var ready_to_get_data = false
 var first_get_callback = true
 var starting_player_logged = false
 var yandex_is_connected = false
+
+var yandex_locale = "ru"
 
 func _ready() -> void:
 	print("Initializing SDK...")
@@ -30,6 +33,7 @@ func init_SDK(args):
 	if args[0] == true:
 		window.getPlayer(get_player_callback)
 		yandex_is_connected = true
+		window.getLocale(get_locale_callback)
 
 func get_Player(args):
 	print("player args from callback")
@@ -43,6 +47,12 @@ func get_Mode(args):
 	print(args[0])
 	if args[0] != 'lite':
 		starting_player_logged = true
+
+func get_Locale(args):
+	print("get locale callback")
+	print(args)
+	yandex_locale = args[0]
+	print(yandex_locale)
 
 func set_Data_js(dataToWrite):
 	print("beginning data set from godot")

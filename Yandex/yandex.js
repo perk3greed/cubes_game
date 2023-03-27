@@ -32,6 +32,10 @@ function getMode(callback) {
     callback(player.getMode());
 }
 
+function getLocale(callback) {
+    callback(ysdk.environment.i18n.lang);
+}
+
 function setData(callback, datatoset) {
     console.log(JSON.parse(datatoset))
     player.setData(JSON.parse(datatoset)).then(_callback => {

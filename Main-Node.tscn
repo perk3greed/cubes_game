@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Grids/Control-scene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://FollowMouse.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://menu/buttons/newnewnewback.png" type="Texture" id=7]
 [ext_resource path="res://Bricks/animated textures/particle/Flame.png" type="Texture" id=8]
 [ext_resource path="res://Bricks/animated textures/particle/Explosion_Sheet.png" type="Texture" id=9]
+[ext_resource path="res://levels/next_level_label.gd" type="Script" id=10]
+[ext_resource path="res://levels/tutorial_label.gd" type="Script" id=11]
 [ext_resource path="res://nextlvlcontrol.gd" type="Script" id=12]
 [ext_resource path="res://menu/buttons/big_start_button_pressed_1.png" type="Texture" id=13]
 [ext_resource path="res://menu/buttons/big_start_button_1.png" type="Texture" id=14]
@@ -148,14 +150,20 @@ texture_pressed = ExtResource( 13 )
 texture_hover = ExtResource( 15 )
 
 [node name="Label" type="Label" parent="Control/Control/TextureButton"]
-anchor_left = 0.2
-anchor_top = 0.2
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.498
+anchor_top = 0.5
+anchor_right = 0.498
+anchor_bottom = 0.5
+margin_left = -219.03
+margin_top = -81.0
+margin_right = 656.97
+margin_bottom = 224.0
 rect_scale = Vector2( 0.5, 0.5 )
 theme = ExtResource( 16 )
 text = "Следующий 
 уровень"
+align = 1
+script = ExtResource( 10 )
 
 [node name="win_sound" type="AudioStreamPlayer" parent="Control/Control"]
 stream = ExtResource( 19 )
@@ -176,6 +184,7 @@ theme = ExtResource( 16 )
 text = "РАССТАВЛЯЙ КВАДРАТИКИ
  КАК НА КАРТИНКЕ СЛЕВА!
 "
+script = ExtResource( 11 )
 
 [node name="level_number" type="Label" parent="Control"]
 anchor_left = 0.4
